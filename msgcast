@@ -428,7 +428,7 @@ var messageCast = function() {
         /*Change Character*/
         "ChangeCharacterLeft": `\${MESSAGECAST.changeCharacterImage(0,"imgUrl",{scale:"1,1",backgroundSize:"auto 100%"});}`,
         "ChangeCharacterRight": `\${MESSAGECAST.changeCharacterImage(1,"imgUrl",{scale:"1,1",backgroundSize:"auto 100%"});}`,
-		"ChangeBackground": `\${MESSAGECAST.changeBackgroundImage("imgUrl",{scale:"1,1",backgroundSize:"100% 100%"});}`,
+		//"ChangeBackground": `\${MESSAGECAST.changeBackgroundImage("imgUrl",{scale:"1,1",backgroundSize:"100% 100%"});}`,
         "ResetCharacterLeft": `\${MESSAGECAST.resetCharacterImage(0);}`,
         "ResetCharacterRight": `\${MESSAGECAST.resetCharacterImage(1);}`,
         "SendPrivateMessage": '${GAME_MANAGER.instance.WaitFor("Message",{receiver:"usernameReceiver",message:"yourMessage",load:true});}',
@@ -1362,7 +1362,7 @@ For example, to add a and dhmis this is how the macro would look like: </div>
         ch.firstChild.style.backgroundSize = MESSAGECAST.characterImagesBgSize[position];
         ch.firstChild.style.transform = `scale(${MESSAGECAST.characterImagesScale[position]})`;
     }
-	    function changeBackgroundImage(position, imageUrl="", additionalOptions = {}) {
+/*	    function changeBackgroundImage(position, imageUrl="", additionalOptions = {}) {
         loadBackgroundImageHandler();
         let ch=document.getElementById("background").children[position];
         if(imageUrl != "") {
@@ -1377,7 +1377,7 @@ For example, to add a and dhmis this is how the macro would look like: </div>
         ch.firstChild.style.backgroundSize = MESSAGECAST.characterImagesBgSize[position];
         ch.firstChild.style.transform = `scale(${MESSAGECAST.characterImagesScale[position]})`;
     }
-
+*/
     function loadCharacterImageHandler() {
         let macroAddedCheck = document.getElementById("macroAddedCheck");
         if(macroAddedCheck!=null && !macroAddedCheck.classList.contains("MESSAGECASTCustomImages")) {
@@ -1766,8 +1766,8 @@ For example, to add a and dhmis this is how the macro would look like: </div>
     MESSAGECAST.characterImagesUrl = ["",""];
     MESSAGECAST.changeCharacterImage = changeCharacterImage;
     MESSAGECAST.resetCharacterImage = resetCharacterImage;
-	MESSAGECAST.changeBackgroundImage = changeCharacterImage;
-    MESSAGECAST.resetBackgroundImage = resetbackgroundImage;
+	//MESSAGECAST.changeBackgroundImage = changeCharacterImage;
+    //MESSAGECAST.resetBackgroundImage = resetbackgroundImage;
     MESSAGECAST.characterImagesBgSize = ["auto 100%","auto 100%"];
     MESSAGECAST.characterImagesScale = ["1,1","1,1"];
 
