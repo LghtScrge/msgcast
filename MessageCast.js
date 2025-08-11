@@ -1366,7 +1366,21 @@ For example, to add a and dhmis this is how the macro would look like: </div>
         ch.firstChild.style.backgroundSize = MESSAGECAST.characterImagesBgSize[position];
         ch.firstChild.style.transform = `scale(${MESSAGECAST.characterImagesScale[position]})`;
     }
-	function changeBackgroundImage(position, imageUrl="", additionalOptions = {}) {
+	
+
+    function loadCharacterImageHandler() {
+        let macroAddedCheck = document.getElementById("macroAddedCheck");
+        if(macroAddedCheck!=null && !macroAddedCheck.classList.contains("MESSAGECASTCustomImages")) {
+            let oldUpdateLocation = SCENE.instance.UpdateLocation;
+            SCENE.instance.UpdateLocation = async (location) => {
+                await oldUpdateLocation(location);
+                MESSAGECAST.changeCharacterImage(0);
+                MESSAGECAST.changeCharacterImage(1);
+            }
+            macroAddedCheck.classList.add("MESSAGECASTCustomImages");
+        }
+    }
+/*	function changeBackgroundImage(position, imageUrl="", additionalOptions = {}) {
         loadBackgroundImageHandler();
         let ch=document.getElementById("background_wrapper").children[position];
         if(imageUrl != "") {
@@ -1384,20 +1398,6 @@ For example, to add a and dhmis this is how the macro would look like: </div>
         ch.firstChild.style.backgroundSize = MESSAGECAST.characterImagesBgSize[position];
         ch.firstChild.style.transform = `scale(${MESSAGECAST.characterImagesScale[position]})`;
     }
-
-    function loadCharacterImageHandler() {
-        let macroAddedCheck = document.getElementById("macroAddedCheck");
-        if(macroAddedCheck!=null && !macroAddedCheck.classList.contains("MESSAGECASTCustomImages")) {
-            let oldUpdateLocation = SCENE.instance.UpdateLocation;
-            SCENE.instance.UpdateLocation = async (location) => {
-                await oldUpdateLocation(location);
-                MESSAGECAST.changeCharacterImage(0);
-                MESSAGECAST.changeCharacterImage(1);
-            }
-            macroAddedCheck.classList.add("MESSAGECASTCustomImages");
-        }
-    }
-	
 	function loadBackgroundImageHandler() {
         let macroAddedCheck = document.getElementById("macroAddedCheck");
         if(macroAddedCheck!=null && !macroAddedCheck.classList.contains("MESSAGECASTCustomImages")) {
@@ -1409,7 +1409,12 @@ For example, to add a and dhmis this is how the macro would look like: </div>
             macroAddedCheck.classList.add("MESSAGECASTCustomImages");
         }
     }
-
+	 function resetCharacterImage(position) {
+        MESSAGECAST.backgroundImagesUrl[position] = "";
+        MESSAGECAST.backgroundImagesBgSize[position] = "auto 100%";
+        MESSAGECAST.backgroundImagesScale[position] = "1,1";
+    }
+*/
     function resetCharacterImage(position) {
         MESSAGECAST.characterImagesUrl[position] = "";
         MESSAGECAST.characterImagesBgSize[position] = "auto 100%";
@@ -1418,11 +1423,6 @@ For example, to add a and dhmis this is how the macro would look like: </div>
         SCENE.instance.ShowCharacter(position==0?LOCATION.instance.player:LOCATION.instance.opponent,position,0);
     }
 	 
-	 function resetCharacterImage(position) {
-        MESSAGECAST.backgroundImagesUrl[position] = "";
-        MESSAGECAST.backgroundImagesBgSize[position] = "auto 100%";
-        MESSAGECAST.backgroundImagesScale[position] = "1,1";
-    }
 
     //stuff to petrify
 
